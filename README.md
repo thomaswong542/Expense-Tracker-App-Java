@@ -24,7 +24,7 @@ This Project is for mainly for job application, personal and non-commercial use 
         PRIMARY KEY (id)
     );
 4. Import the project to Intellij
-5. Add the following properties in expenseTrackerAPI/src/main/resources/application.properties
+5. Add the following properties in expenseTrackerAPI/src/main/resources/application.properties (The use of environment variables is highly suggested)
     ```
     spring.datasource.url=jdbc:postgresql://localhost:{port_number}/{database_name}
     spring.datasource.username={database_owner}
