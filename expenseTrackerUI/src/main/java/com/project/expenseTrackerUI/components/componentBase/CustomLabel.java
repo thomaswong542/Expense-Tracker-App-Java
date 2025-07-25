@@ -6,8 +6,8 @@ import javafx.scene.text.Font;
 
 public class CustomLabel extends Label {
 
-    private String name;
-    private String color = "#FFFFFF";
+    private final String name;
+    private String textColor = "#FFFFFF";
     private double fontSize = 14.0d;
 
     public CustomLabel(String name){
@@ -17,23 +17,22 @@ public class CustomLabel extends Label {
 
     private void init(){
         this.setText(this.name);
-        this.setTextFill(Paint.valueOf(this.color));
+        this.setTextFill(Paint.valueOf(this.textColor));
         this.setFont(Font.font(this.fontSize));
-    }
-
-    public void setName(String name){
-        this.name = name;
-        this.setText(this.name);
-    }
-
-    public void setColor(String color){
-        this.color = color;
-        this.setTextFill(Paint.valueOf(this.color));
     }
 
     public void setFontSize(double size){
         this.fontSize = size;
         this.setFont(Font.font(this.fontSize));
+    }
+
+    public void setTextColor(String textColor){
+        this.textColor = textColor;
+        this.setTextFill(Paint.valueOf(this.textColor));
+    }
+
+    public void setItalic(){
+        this.setStyle("-fx-font-style: italic");
     }
 
 }

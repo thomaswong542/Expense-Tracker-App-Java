@@ -16,13 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Endpoint
-// get: /expense
-// post: /expense
-// update /expense/id
-// delete /expense/id
+// get: v1/expense
+// post: v1/expense
+// update v1/expense/id
+// delete v1/expense/id
 
 @RestController
-@RequestMapping(path = "/expense")
+@RequestMapping(path = "v1/expense")
 public class ExpenseController {
 
     private final DataSourceConfiguration dataSourceConfiguration;
@@ -34,7 +34,7 @@ public class ExpenseController {
     @GetMapping(produces = "application/json")
     public ResponseEntity<List<Expense>> getExpense(@RequestParam MultiValueMap<String, ?> params) throws BadRequestException {
         boolean dateExist = false;
-        String[] paramCheckList = {"category", "location", "shop", "startDate", "endDate"};
+        String[] paramCheckList = {"category", "location", "shop", "item", "startDate", "endDate"};
         ArrayList<String> paramsChecker = new ArrayList<>(List.of(paramCheckList));
         ArrayList<String> keyValueList = new ArrayList<>();
 

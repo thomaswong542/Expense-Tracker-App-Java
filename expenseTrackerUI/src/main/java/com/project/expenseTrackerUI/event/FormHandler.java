@@ -65,6 +65,7 @@ public abstract class FormHandler {
         String category = filterForm.getCategoryValue();
         String location = filterForm.getLocationValue();
         String shop = filterForm.getShopValue();
+        String item = filterForm.getItemValue();
 
         if ((startDate.isEmpty() && !endDate.isEmpty()) || (!startDate.isEmpty() && endDate.isEmpty())) {
             EventHandlerTools.showAlert("startDate and endDate must both exist or both non exist");
@@ -76,6 +77,7 @@ public abstract class FormHandler {
             map.put("category", category);
             map.put("location", location);
             map.put("shop", shop);
+            map.put("item", item);
         }
 
         return map;
@@ -87,6 +89,7 @@ public abstract class FormHandler {
         TextField categoryInput = filterForm.getCategoryInput();
         TextField locationInput = filterForm.getLocationInput();
         TextField shopInput = filterForm.getShopInput();
+        TextField itemInput = filterForm.getItemInput();
 
         startDatePicker.getEditor().clear();
         startDatePicker.setValue(null);
@@ -102,6 +105,9 @@ public abstract class FormHandler {
 
         shopInput.clear();
         shopInput.setText(null);
+
+        itemInput.clear();
+        itemInput.setText(null);
     }
 
 }

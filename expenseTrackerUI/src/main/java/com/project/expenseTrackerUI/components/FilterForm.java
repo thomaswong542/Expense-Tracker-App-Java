@@ -2,15 +2,12 @@ package com.project.expenseTrackerUI.components;
 
 import com.project.expenseTrackerUI.components.componentBase.CustomButton;
 import com.project.expenseTrackerUI.components.componentBase.CustomGrid;
-import com.project.expenseTrackerUI.components.componentBase.CustomLabel;
-import javafx.geometry.Pos;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.HBox;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class FilterForm extends CustomGrid {
 
@@ -19,6 +16,7 @@ public class FilterForm extends CustomGrid {
     private TextField categoryInput;
     private TextField locationInput;
     private TextField shopInput;
+    private TextField itemInput;
     private CustomButton confirmBtn;
 
     public FilterForm(){
@@ -27,52 +25,45 @@ public class FilterForm extends CustomGrid {
 
     private void init(){
         ColumnConstraints column1 = new ColumnConstraints();
-        column1.setPercentWidth(34);
+        column1.setPercentWidth(30);
         ColumnConstraints column2 = new ColumnConstraints();
-        column2.setPercentWidth(33);
+        column2.setPercentWidth(30);
         ColumnConstraints column3 = new ColumnConstraints();
-        column3.setPercentWidth(33);
+        column3.setPercentWidth(30);
+        ColumnConstraints column4 = new ColumnConstraints();
+        column4.setPercentWidth(10);
 
-        this.getColumnConstraints().addAll(column1, column2, column3);
+        this.getColumnConstraints().addAll(column1, column2, column3, column4);
 
         startDateInput = new DatePicker();
         startDateInput.setEditable(false);
         HBox startDateContainer = setFormInput(startDateInput, "StartDate: ");
-        startDateContainer.setAlignment(Pos.BOTTOM_LEFT);
 
         endDateInput = new DatePicker();
         endDateInput.setEditable(false);
         HBox endDateContainer = setFormInput(endDateInput, "EndDate: ");
-        endDateContainer.setAlignment(Pos.BOTTOM_CENTER);
 
         categoryInput = new TextField();
         HBox categoryContainer = setFormInput(categoryInput, "Category: ");
-        categoryContainer.setAlignment(Pos.BOTTOM_RIGHT);
 
         locationInput = new TextField();
         HBox locationContainer = setFormInput(locationInput, "Location: ");
-        locationContainer.setAlignment(Pos.BOTTOM_LEFT);
 
         shopInput = new TextField();
         HBox shopContainer = setFormInput(shopInput, "Shop: ");
-        shopContainer.setAlignment(Pos.BOTTOM_CENTER);
+
+        itemInput = new TextField();
+        HBox itemContainer = setFormInput(itemInput, "Item: ");
 
         confirmBtn = new CustomButton("Confirm");
-        HBox confirmContainer = setFormInput(confirmBtn, "");
-        confirmContainer.setAlignment(Pos.BOTTOM_RIGHT);
 
-        CustomLabel filterLabel = new CustomLabel("Filter Form");
-        filterLabel.setFontSize(14);
-        HBox filterContainer = setFormInput(filterLabel, "");
-        filterContainer.setAlignment(Pos.BOTTOM_CENTER);
-
-        this.add(filterContainer, 1, 0);
-        this.add(startDateContainer, 0, 1);
-        this.add(endDateContainer, 1, 1);
-        this.add(categoryContainer, 2, 1);
-        this.add(locationContainer, 0, 2);
-        this.add(shopContainer, 1, 2);
-        this.add(confirmContainer, 2, 2);
+        this.add(startDateContainer, 0, 0);
+        this.add(endDateContainer, 1, 0);
+        this.add(categoryContainer, 2, 0);
+        this.add(locationContainer, 0, 1);
+        this.add(shopContainer, 1, 1);
+        this.add(itemContainer, 2, 1);
+        this.add(confirmBtn, 3, 1);
     }
 
     public CustomButton getConfirmBtn() {
@@ -99,6 +90,10 @@ public class FilterForm extends CustomGrid {
         return this.shopInput.getCharacters().toString();
     }
 
+    public String getItemValue(){
+        return this.itemInput.getCharacters().toString();
+    }
+
     public DatePicker getStartDateInput(){
         return this.startDateInput;
     }
@@ -112,11 +107,15 @@ public class FilterForm extends CustomGrid {
     }
 
     public TextField getLocationInput() {
-        return locationInput;
+        return this.locationInput;
     }
 
     public TextField getShopInput() {
-        return shopInput;
+        return this.shopInput;
+    }
+
+    public TextField getItemInput(){
+        return this.itemInput;
     }
 
 }

@@ -107,10 +107,4 @@ public class Expense {
         this.deleted = deleted;
     }
 
-
-
-
-
-
-
 }

@@ -6,17 +6,18 @@ import com.project.expenseTrackerUI.event.EventHandler;
 import com.project.expenseTrackerUI.model.Expense;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 
 import java.net.http.HttpClient;
 
-public class MainLayout extends VBox {
+public class MainLayout extends HBox {
 
-    private TopMenu topMenu;
-    private FilterForm filterForm;
     private ExpenseTable expenseTable;
-    private ExpenseForm expenseForm;
+    private SideMenu sideMenu;
+    private FormStack formStack;
+    private PaginationContainer paginationContainer;
     private HttpClient client;
 
     public MainLayout() {
@@ -24,24 +25,32 @@ public class MainLayout extends VBox {
     }
 
     private void init() {
-        this.setBackground(new Background(new BackgroundFill(Paint.valueOf("#282828"), CornerRadii.EMPTY, Insets.EMPTY)));
-        topMenu = new TopMenu();
-        filterForm = new FilterForm();
+        this.setBackground(new Background(new BackgroundFill(Paint.valueOf("#FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        sideMenu = new SideMenu();
+        paginationContainer = new PaginationContainer();
+        paginationContainer.setDisable(true);
         expenseTable = new ExpenseTable();
-        expenseForm = new ExpenseForm();
-        TableRowContextMenu contextMenu = new TableRowContextMenu();
-        this.getChildren().addAll(topMenu, filterForm, expenseTable, expenseForm);
+        formStack = new FormStack();
 
-        VBox.setMargin(topMenu, new Insets(0, 0, 5.0d, 0));
-        VBox.setMargin(filterForm, new Insets(10.0d, 20.0d, 10.0d, 20.0d));
-        VBox.setMargin(expenseTable, new Insets(0, 20.0d, 0, 20.0d));
-        VBox.setMargin(expenseForm, new Insets(10.0d, 20.0d, 10.0d, 20.0d));
-
+        VBox rightPane = new VBox();
+        rightPane.getChildren().addAll(paginationContainer, expenseTable, formStack);
         VBox.setVgrow(expenseTable, Priority.ALWAYS);
+        VBox.setMargin(formStack, new Insets(5.0d, 10.0d, 5.0d, 10.0d));
+        VBox.setMargin(expenseTable, new Insets(5.0d, 10.0d, 5.0d, 10.0d));
+        VBox.setMargin(paginationContainer, new Insets(5.0d, 10.0d, 5.0d, 10.0d));
+
+        this.getChildren().addAll(sideMenu, rightPane);
+        HBox.setHgrow(rightPane, Priority.ALWAYS);
 
         // event handling
         client = HttpClient.newBuilder().build();
         ObservableList<Expense> expenseList = expenseTable.getList();
+        TableRowContextMenu contextMenu = new TableRowContextMenu();
+        MenuItem contextMenuUpdateBtn = contextMenu.getUpdateMenuItem();
+        ExpenseForm expenseForm = formStack.getExpenseForm();
+        FilterForm filterForm = formStack.getFilterForm();
+
         CustomButton confirmBtn = filterForm.getConfirmBtn();
         CustomButton addBtn = expenseForm.getAddBtn();
         CustomButton updateBtn = expenseForm.getUpdateButton();
@@ -52,7 +61,7 @@ public class MainLayout extends VBox {
         EventHandler.filterConfirm(client, confirmBtn, filterForm, expenseList);
         EventHandler.addExpense(client, addBtn, expenseForm, expenseList);
         EventHandler.getRowAction(expenseTable, expenseForm, contextMenu);
-        EventHandler.setContextMenuUpdateAction(contextMenu.getUpdateMenuItem(), expenseForm, expenseTable);
+        EventHandler.setContextMenuUpdateAction(contextMenuUpdateBtn, expenseForm, expenseTable);
         EventHandler.updateExpense(client, updateBtn, expenseForm, expenseList);
         EventHandler.deleteExpense(client, deleteBtn, expenseTable, expenseList);
         EventHandler.cancelUpdate(cancelBtn, expenseForm);

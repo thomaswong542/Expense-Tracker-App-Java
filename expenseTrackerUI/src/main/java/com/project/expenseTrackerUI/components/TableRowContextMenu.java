@@ -1,6 +1,5 @@
 package com.project.expenseTrackerUI.components;
 
-
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 

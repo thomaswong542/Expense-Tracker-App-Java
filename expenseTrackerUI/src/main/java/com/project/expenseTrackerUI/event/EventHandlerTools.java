@@ -1,17 +1,12 @@
 package com.project.expenseTrackerUI.event;
 
 import com.project.expenseTrackerUI.components.ExpenseForm;
-import com.project.expenseTrackerUI.components.FilterForm;
 import com.project.expenseTrackerUI.components.componentBase.CustomButton;
-import com.project.expenseTrackerUI.model.Expense;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
 import java.util.HashMap;
 
 public abstract class EventHandlerTools {

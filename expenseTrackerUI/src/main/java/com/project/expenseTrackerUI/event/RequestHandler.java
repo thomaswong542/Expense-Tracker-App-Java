@@ -15,6 +15,7 @@ public abstract class RequestHandler {
                     .uri(URI.create(uri))
                     .timeout(Duration.ofSeconds(20))
                     .header("Content-Type", "application/json")
+                    .header("Accept-Encoding", "gzip")
                     .POST(HttpRequest.BodyPublishers.ofString(body))
                     .build();
             case "PUT" -> HttpRequest.newBuilder()
@@ -31,12 +32,13 @@ public abstract class RequestHandler {
             default -> HttpRequest.newBuilder()
                     .uri(URI.create(uri))
                     .timeout(Duration.ofSeconds(20))
+                    .header("Accept-Encoding", "gzip")
                     .GET()
                     .build();
         };
     }
 
-    public static HttpResponse<String> sendHttpRequest(HttpClient client, String method, String uri, String body){
+    public static HttpResponse<byte[]> sendHttpRequest(HttpClient client, String method, String uri, String body){
         HttpRequest request = getHttpRequest(method, uri, body);
 
         if ( (method.equals("POST") || method.equals("PUT")) && body.isEmpty()) {
@@ -44,9 +46,9 @@ public abstract class RequestHandler {
             return null;
         }
 
-        HttpResponse<String> response;
+        HttpResponse<byte[]> response;
         try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            response = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
         } catch (IOException | InterruptedException e) {
             EventHandlerTools.showAlert("Unable to send Request");
             throw new RuntimeException(e);
