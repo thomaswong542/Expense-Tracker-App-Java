@@ -4,6 +4,11 @@ A Java Desktop Expense Tracker App using JavaFX and spring boot
 ## Liscense Notice
 This Project is for mainly for job application, personal and non-commercial use only, any distribution and modification are not allowed.
 
+## Features
+1. Data Filtering
+2. Quick access to previous data and fill it in the form by double left clicking the row from the table
+3. Same features as no.2 when right clicking the row and click update button for quick form input
+
 ## How to use
 1. Install PostgreSQL
 2. Create a database
@@ -31,3 +36,7 @@ This Project is for mainly for job application, personal and non-commercial use 
     spring.datasource.password={PostgreSQL_password}
 6. Run expenseTrackerAPI/src/main/java/com/project/expenseTrackerAPI/ExpenseTrackerApiApplication.java first
 7. Then run expenseTrackerUI/src/main/java/com/project/expenseTrackerUI/App.java (You can use the preset run configuration)
+
+## Screenshot
+<img width="1280" height="720" alt="App Screenshot" src="https://github.com/user-attachments/assets/706fff93-c7ed-4d38-99e6-815b365dc79a" />
+
