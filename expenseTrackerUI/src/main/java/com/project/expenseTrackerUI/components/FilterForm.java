@@ -7,8 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.HBox;
 
-import java.time.LocalDate;
-
 public class FilterForm extends CustomGrid {
 
     private DatePicker startDateInput;
@@ -68,30 +66,6 @@ public class FilterForm extends CustomGrid {
 
     public CustomButton getConfirmBtn() {
         return this.confirmBtn;
-    }
-
-    public LocalDate getStartDateValue(){
-        return this.startDateInput.getValue();
-    }
-
-    public LocalDate getEndDateValue(){
-        return this.endDateInput.getValue();
-    }
-
-    public String getCategoryValue(){
-        return this.categoryInput.getCharacters().toString();
-    }
-
-    public String getLocationValue(){
-        return this.locationInput.getCharacters().toString();
-    }
-
-    public String getShopValue(){
-        return this.shopInput.getCharacters().toString();
-    }
-
-    public String getItemValue(){
-        return this.itemInput.getCharacters().toString();
     }
 
     public DatePicker getStartDateInput(){

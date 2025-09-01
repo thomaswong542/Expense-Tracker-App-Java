@@ -30,7 +30,7 @@ public class ErrorController {
     public ResponseEntity<String> handleDeserializationError(HttpMessageNotReadableException ex) {
         return ResponseEntity
                 .badRequest()
-                .body("Some types are incorrect in Expenses fields");
+                .body("Some types are incorrect in expenses fields");
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)

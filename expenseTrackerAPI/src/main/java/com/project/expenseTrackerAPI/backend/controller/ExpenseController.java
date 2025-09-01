@@ -51,7 +51,6 @@ public class ExpenseController {
             throw new BadRequestException("startDate and endDate must both exist or both not exist");
         }
 
-        // data validation for startDate and endDate
         if (params.containsKey("startDate") && params.containsKey("endDate")){
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String startDateVal = params.get("startDate").getFirst().toString();

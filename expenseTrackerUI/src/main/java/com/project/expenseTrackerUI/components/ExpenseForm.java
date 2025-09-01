@@ -7,8 +7,6 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 
-import java.time.LocalDate;
-
 public class ExpenseForm extends CustomGrid {
 
     private DatePicker dateInput;
@@ -103,68 +101,36 @@ public class ExpenseForm extends CustomGrid {
         return this.deleteBtn;
     }
 
-    public LocalDate getDateValue(){
-        return this.dateInput.getValue();
+    public DatePicker getDateInput(){
+        return this.dateInput;
     }
 
-    public String getCategoryValue(){
-        return this.categoryInput.getText();
+    public TextField getCategoryInput() {
+        return this.categoryInput;
     }
 
-    public String getLocationValue(){
-        return this.locationInput.getText();
+    public TextField getLocationInput() {
+        return this.locationInput;
     }
 
-    public String getShopValue(){
-        return this.shopInput.getText();
+    public TextField getShopInput() {
+        return this.shopInput;
     }
 
-    public String getItemValue(){
-        return this.itemInput.getText();
+    public TextField getItemInput() {
+        return this.itemInput;
     }
 
-    public String getCardValue(){
-        return this.cardInput.getText();
+    public TextField getCardInput() {
+        return this.cardInput;
     }
 
-    public int getQuantityValue() throws NullPointerException, NumberFormatException{
-        return this.quantityInput.getValue();
+    public Spinner<Integer> getQuantityInput() {
+        return this.quantityInput;
     }
 
-    public double getPriceValue() throws NullPointerException, NumberFormatException{
-        return this.priceInput.getValue();
-    }
-
-    public void setDateInput(LocalDate date){
-        this.dateInput.setValue(date);
-    }
-
-    public void setCategoryInput(String category){
-        this.categoryInput.setText(category);
-    }
-
-    public void setLocationInput(String location){
-        this.locationInput.setText(location);
-    }
-
-    public void setShopInput(String shop){
-        this.shopInput.setText(shop);
-    }
-
-    public void setItemInput(String item){
-        this.itemInput.setText(item);
-    }
-
-    public void setCardInput(String card){
-        this.cardInput.setText(card);
-    }
-
-    public void setQuantityInput(int quantity){
-        this.quantityInput.getValueFactory().setValue(quantity);
-    }
-
-    public void setPriceInput(double price){
-        this.priceInput.getValueFactory().setValue(price);
+    public Spinner<Double> getPriceInput() {
+        return this.priceInput;
     }
 
 }

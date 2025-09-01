@@ -39,7 +39,7 @@ class ExpenseControllerPostTest {
         this.mockMvc.perform(MockMvcRequestBuilders.post("/expense").content(jsonBody)
                         .header("Content-Type", "application/json"))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andExpect(MockMvcResultMatchers.content().string("Some types are incorrect in Expenses fields"));
+                .andExpect(MockMvcResultMatchers.content().string("Some types are incorrect in expenses fields"));
     }
 
 

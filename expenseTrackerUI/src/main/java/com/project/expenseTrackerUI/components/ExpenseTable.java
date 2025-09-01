@@ -1,8 +1,6 @@
 package com.project.expenseTrackerUI.components;
 
 import com.project.expenseTrackerUI.model.Expense;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -11,7 +9,6 @@ import java.time.LocalDate;
 
 public class ExpenseTable extends TableView<Expense> {
 
-    private ObservableList<Expense> list = FXCollections.observableArrayList();
     private TableColumn<Expense, LocalDate> dateCol;
     private TableColumn<Expense, String> categoryCol;
     private TableColumn<Expense, String> locationCol;
@@ -51,8 +48,6 @@ public class ExpenseTable extends TableView<Expense> {
         defineColumn(priceCol, "price", 0.1);
 
         this.getColumns().setAll(dateCol, categoryCol, locationCol, shopCol, itemCol, cardCol, quantityCol, priceCol);
-
-        this.setItems(list);
     };
 
     private void defineColumn(TableColumn<Expense, ?> col, String fieldName, double colSize){
@@ -60,10 +55,6 @@ public class ExpenseTable extends TableView<Expense> {
         col.prefWidthProperty().bind(this.widthProperty().multiply(colSize));
         col.setResizable(false);
         col.setReorderable(false);
-    }
-
-    public ObservableList<Expense> getList(){
-        return this.list;
     }
 
 }

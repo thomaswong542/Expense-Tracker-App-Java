@@ -31,11 +31,6 @@ public class SideMenu extends VBox {
         this.setSpacing(10d);
     }
 
-    public void setBgColor(String bgColor){
-        this.bgColor = bgColor;
-        this.setBackground(new Background(new BackgroundFill(Paint.valueOf(bgColor), CornerRadii.EMPTY, Insets.EMPTY)));
-    }
-
     public VBox createIcon(){
         VBox vbox = new VBox();
         CustomLabel appIcon = new CustomLabel("Expense");

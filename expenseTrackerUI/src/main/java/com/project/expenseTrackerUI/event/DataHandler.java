@@ -30,7 +30,7 @@ public abstract class DataHandler {
         return expenses;
     }
 
-    public static String expenseToString(Expense expense){
+    public static String expenseToJson(Expense expense){
         ObjectMapper obj = new ObjectMapper();
         obj.findAndRegisterModules();
 
